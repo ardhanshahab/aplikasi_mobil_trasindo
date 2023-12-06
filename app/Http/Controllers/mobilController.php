@@ -21,6 +21,15 @@ class mobilController extends Controller
         return view('admin.index', compact('posts'));
     }
 
+    public function indexmember()
+    {
+        //get posts
+        $posts = mobil::latest()->paginate(5);
+
+        //render view with posts
+        return view('homemember', compact('images'));
+    }
+
     /**
      * create
      *

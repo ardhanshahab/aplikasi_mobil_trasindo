@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\mobil;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,12 @@ class HomeController extends Controller
         if ($user == 'admin') {
             return view('homeadmin');
         }else{
-            return view('homemember');
+
+            //get posts
+        $images = mobil::latest()->paginate(5);
+
+        //render view with posts
+        return view('homemember', compact('images'));
         }
     }
 }
